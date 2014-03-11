@@ -20,7 +20,7 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>mdb</artifactId>
+	<artifactId>dashboard</artifactId>
 	<packaging>war</packaging>
 	<name>mdb</name>
 	<url>http://maven.apache.org</url>
