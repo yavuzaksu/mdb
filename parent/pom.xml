@@ -700,6 +700,25 @@
 				<shell.suffix>.bat</shell.suffix>
 			</properties>
 		</profile>
+		<profile>
+            <id>int-tests</id>
+            <modules>
+                <module>../integration-tests</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>ui-tests</id>
+            <modules>
+                <module>../ui-tests</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>full-tests</id>
+            <modules>
+                <module>../integration-tests</module>
+                <module>../ui-tests</module>
+            </modules>
+        </profile>
 	</profiles>
 
 	<reporting>
