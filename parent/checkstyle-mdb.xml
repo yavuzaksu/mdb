@@ -92,16 +92,16 @@
         <module name="BooleanExpressionComplexity">
             <property name="severity" value="warning"/>
         </module>
-        <module name="JavadocMethod">
+        <!--module name="JavadocMethod">
             <property name="severity" value="info"/>
             <property name="scope" value="package"/>
             <property name="allowMissingPropertyJavadoc" value="true"/>
-        </module>
-        <module name="JavadocType">
+        </module ->
+        <!-- module name="JavadocType">
             <property name="severity" value="info"/>
             <property name="scope" value="package"/>
             <property name="authorFormat" value="\S"/>
-        </module>
+        </module -->
         <module name="JavadocStyle">
             <property name="severity" value="info"/>
         </module>
