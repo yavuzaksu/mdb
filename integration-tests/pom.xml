@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<parent>
 		<groupId>com.monitise</groupId>
 		<artifactId>mdb-parent</artifactId>
@@ -8,17 +8,59 @@
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
-    <artifactId>mdb-integration-tests</artifactId>
-    <packaging>jar</packaging>
 
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-    <name>mdb :: Integration Tests Parent</name>
-    <description>mdb - Integration Tests</description>
 
-    
+	<artifactId>mdb-restassured</artifactId>
 
-    <build>
+	<packaging>jar</packaging>
+
+	<name>restassured</name>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>rest-assured</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>json-path</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>xml-path</artifactId>
+
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>json-schema-validator</artifactId>
+
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+
+		</dependency>
+
+
+
+	</dependencies>
+	
+	
+	<build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -41,4 +83,6 @@
             </plugin>
         </plugins>
     </build>
+    
+
 </project>
