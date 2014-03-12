@@ -6,18 +6,35 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+
 /**
  * @author bhavanimagam Base class which exposes all selenium utility methods.
  */
 public class BaseClass {
-	//CHECKSTYLE:OFF
+	// CHECKSTYLE:OFF
 	private WebDriver driver;
 
 	@BeforeSuite
 	public void setUp() {
-		if ("chrome".equals(ConfigurationManager.getDriverType())) {
-			System.setProperty("webdriver.chrome.driver",
-					"C:\\SeleniumData\\chromedriver.exe");
+		if ("chrome".equals(ConfigurationManager.getDriverType())
+				&& System.getProperty("os.name").contains("Windows")) {
+			System.setProperty("webdriver.chrome.driver", this.getClass()
+					.getClassLoader().getResource("chromedriver-windows.exe")
+					.getFile());
+			driver = new ChromeDriver();
+		}
+		if ("chrome".equals(ConfigurationManager.getDriverType())
+				&& System.getProperty("os.name").contains("Linux")) {
+			System.setProperty("webdriver.chrome.driver", this.getClass()
+					.getClassLoader().getResource("chromedriver-linux32.exe")
+					.getFile());
+			driver = new ChromeDriver();
+		}
+		if ("chrome".equals(ConfigurationManager.getDriverType())
+				&& System.getProperty("os.name").contains("Mac")) {
+			System.setProperty("webdriver.chrome.driver", this.getClass()
+					.getClassLoader().getResource("chromedriver-mac.exe")
+					.getFile());
 			driver = new ChromeDriver();
 		} else if ("firefox".equals(ConfigurationManager.getDriverType())) {
 
