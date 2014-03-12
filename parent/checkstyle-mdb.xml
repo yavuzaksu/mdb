@@ -105,9 +105,9 @@
         <module name="JavadocStyle">
             <property name="severity" value="info"/>
         </module>
-        <module name="AvoidStarImport">
+        <!--module name="AvoidStarImport">
             <property name="severity" value="warning"/>
-        </module>
+        </module -->
         <module name="IllegalImport">
             <property name="severity" value="warning"/>
         </module>
