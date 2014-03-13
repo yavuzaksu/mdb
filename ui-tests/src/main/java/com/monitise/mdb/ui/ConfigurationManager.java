@@ -12,6 +12,10 @@ public final class ConfigurationManager {
 	// CHECKSTYLE:OFF
 	private static Properties properties = new Properties();
 
+	private ConfigurationManager() {
+
+	}
+
 	static {
 		try {
 			properties.load(ConfigurationManager.class.getClassLoader()

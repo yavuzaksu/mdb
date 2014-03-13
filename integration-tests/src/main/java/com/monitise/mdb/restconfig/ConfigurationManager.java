@@ -9,23 +9,27 @@ import java.util.Properties;
  * 
  **/
 public final class ConfigurationManager {
-	// CHECKSTYLE:OFF
-	private static Properties properties = new Properties();
+    // CHECKSTYLE:OFF
+    private static Properties properties = new Properties();
 
-	static {
-		try {
-			properties.load(ConfigurationManager.class.getClassLoader()
-					.getResourceAsStream("configProperties.properties"));
-		} catch (IOException io) {
-			throw new RuntimeException("loading failed", io);
-		}
-	}
+    private ConfigurationManager() {
 
-	public static String getUrl() {
-		return properties.getProperty("url");
-	}
+    }
 
-	public static String getDriverType() {
-		return properties.getProperty("driver");
-	}
+    static {
+        try {
+            properties.load(ConfigurationManager.class.getClassLoader()
+                    .getResourceAsStream("configProperties.properties"));
+        } catch (IOException io) {
+            throw new RuntimeException("loading failed", io);
+        }
+    }
+
+    public static String getUrl() {
+        return properties.getProperty("url");
+    }
+
+    public static String getDriverType() {
+        return properties.getProperty("driver");
+    }
 }

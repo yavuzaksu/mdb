@@ -74,6 +74,49 @@
 				<artifactId>commons-beanutils</artifactId>
 				<version>1.9.1</version>
 			</dependency>
+	<dependency>
+	<groupId>org.seleniumhq.selenium</groupId>
+	<artifactId>selenium-server</artifactId>
+	<version>2.25.0</version>
+</dependency>
+            
+    <dependency>
+      <groupId>com.jayway.restassured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>2.3.0</version>
+      <scope>test</scope>
+</dependency>
+<dependency>
+      <groupId>com.jayway.restassured</groupId>
+      <artifactId>json-path</artifactId>
+      <version>2.3.0</version>
+</dependency>
+<dependency>
+      <groupId>com.jayway.restassured</groupId>
+      <artifactId>xml-path</artifactId>
+      <version>2.3.0</version>
+</dependency>
+<dependency>
+  <groupId>org.testng</groupId>
+  <artifactId>testng</artifactId>
+  <version>6.1.1</version>
+</dependency>
+<dependency>
+      <groupId>com.jayway.restassured</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <version>2.3.0</version>
+      <scope>test</scope>
+</dependency>
+<dependency>
+	<groupId>com.google.code.gson</groupId>
+	<artifactId>gson</artifactId>
+	<version>2.2.4</version>
+</dependency>
+             <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>2.40.0</version>
+    </dependency> 
 			<dependency>
 				<groupId>commons-codec</groupId>
 				<artifactId>commons-codec</artifactId>
@@ -84,6 +127,11 @@
 				<artifactId>commons-collections</artifactId>
 				<version>3.2.1</version>
 			</dependency>
+			<dependency>
+			<groupId>org.codehaus.sonar-plugins</groupId>
+			<artifactId>sonar-scm-stats-plugin</artifactId>
+			<version>0.3</version>
+		</dependency>
 			<dependency>
 				<groupId>commons-digester</groupId>
 				<artifactId>commons-digester</artifactId>

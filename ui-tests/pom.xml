@@ -43,10 +43,7 @@
 
 		</dependency>
 
-		<dependency>
-			<groupId>com.urbanmania</groupId>
-			<artifactId>spring-property-annotations</artifactId>
-		</dependency>
+	
 
 		<dependency>
 			<groupId>org.testng</groupId>
@@ -62,22 +59,12 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
-
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-core</artifactId>
-
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 
 		</dependency>
-		<dependency>
-	<groupId>org.seleniumhq.selenium</groupId>
-	<artifactId>selenium-chrome-driver</artifactId>
-</dependency>
 	</dependencies>
 
 	<build>
