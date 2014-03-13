@@ -69,7 +69,7 @@
 		</route>
 		
 		<!-- writes XML as output -->
-		<route>
+<!-- 		<route>
 			<from uri="jetty:http://localhost:8080/mdb/api/project/worse/10" />
 			<to
 				uri="http://localhost:9000/api/resources?metrics=coverage&amp;limit=10&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
@@ -84,7 +84,7 @@
 			<to
 				uri="http://localhost:9000/api/resources?metrics=coverage&amp;limit=1&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
 		</route>
-		
+ -->		
 		<!-- supply limit=n, for n number of worse projects. -->
 		<route>
 			<from
