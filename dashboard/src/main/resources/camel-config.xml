@@ -40,7 +40,7 @@
 			</choice>
 		</route>
 
-		<!-- URIs for demo. Later these are to be parameterized. Hit the browser with from URI without the word jetty:  -->
+		<!-- URIs for demo. Later these are to be parameterized. Hit the browser with from URI without the word jetty: -->
 		<route>
 			<from uri="jetty:http://localhost:8085/mdb/api/project/worse/10" />
 			<process ref="jsonOutCreator" />
@@ -59,7 +59,7 @@
 			<to
 				uri="http://localhost:9000/api/resources?metrics=coverage&amp;limit=1" />
 		</route>
-		
+
 		<!-- TODO: avg is yet TO BE implemented. -->
 		<route>
 			<from uri="jetty:http://localhost:8085/mdb/api/project/avg" />
@@ -67,35 +67,70 @@
 			<to
 				uri="http://localhost:9000/api/resources?metrics=coverage&amp;limit=1&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
 		</route>
+
+		<!-- Issues on the projects: gives all MAJOR, MINOR issues from all projects, with OPEN status with aggregated. -->
+			<route>
+			<from uri="jetty:http://localhost:8085/mdb/api/project/issues/aggregated" />
+			
+			<multicast strategyRef="issuesAggregationStrategy" parallelProcessing="true">
+				<to uri="http://localhost:9000/api/issues/search?statuses=OPEN&amp;severities=MAJOR&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
+				<to uri="http://localhost:9000/api/issues/search?statuses=OPEN&amp;severities=MINOR&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
+				<to uri="http://localhost:9000/api/issues/search?statuses=OPEN&amp;severities=BLOCKER&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
+			</multicast>
+			
+		</route>
+
+		<!-- aggregation ends -->
 		
-		<!-- writes XML as output -->
-<!-- 		<route>
-			<from uri="jetty:http://localhost:8080/mdb/api/project/worse/10" />
+		<route>
+			<from uri="jetty:http://localhost:8085/mdb/api/project/issues/all" />
+			<process ref="jsonOutCreator" />
+			
 			<to
-				uri="http://localhost:9000/api/resources?metrics=coverage&amp;limit=10&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
+				uri="http://localhost:9000/api/issues/search?statuses=OPEN&amp;severities=BLOCKER,CRITICAL,MAJOR,MINOR,INFO" />
 		</route>
 		<route>
-			<from uri="jetty:http://localhost:8080/mdb/api/project/worse/5" />
+			<from uri="jetty:http://localhost:8085/mdb/api/project/issues/major" />
+			<process ref="jsonOutCreator" />
 			<to
-				uri="http://localhost:9000/api/resources?metrics=coverage&amp;limit=5&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
+				uri="http://localhost:9000/api/issues/search?statuses=OPEN&amp;severities=MAJOR" />
 		</route>
 		<route>
-			<from uri="jetty:http://localhost:8080/mdb/api/project/worse/1" />
+			<from uri="jetty:http://localhost:8085/mdb/api/project/issues/minor" />
+			<process ref="jsonOutCreator" />
 			<to
-				uri="http://localhost:9000/api/resources?metrics=coverage&amp;limit=1&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false" />
+				uri="http://localhost:9000/api/issues/search?statuses=OPEN&amp;severities=MINOR" />
 		</route>
- -->		
+		<route>
+			<from uri="jetty:http://localhost:8085/mdb/api/project/issues/blocker" />
+			<process ref="jsonOutCreator" />
+			<to
+				uri="http://localhost:9000/api/issues/search?statuses=OPEN&amp;severities=BLOCKER" />
+		</route>
+		<route>
+			<from uri="jetty:http://localhost:8085/mdb/api/project/issues/critical" />
+			<process ref="jsonOutCreator" />
+			<to
+				uri="http://localhost:9000/api/issues/search?statuses=OPEN&amp;severities=CRITICAL" />
+		</route>
+
+
+		<!-- TODO: Issues on the projects: gives all MAJOR, MINOR issues from a 
+			selected project -->
+
+
 		<!-- supply limit=n, for n number of worse projects. -->
 		<route>
 			<from
-				uri="jetty:http://localhost:8085/mdb/api/project/worse?metrics=coverage&amp;limit=1" />
+				uri="jetty:http://localhost:8085/mdb/api/project/worse?metrics={coverage}&amp;limit={limiting}" />
 			<process ref="jsonOutCreator" />
-			<to
-				uri="http://localhost:9000/api/resources?metrics=${in.header.coverage}&amp;limit=${in.header.limit}" />
+			<recipientList>
+				<simple>http://localhost:9000/api/resources?metrics=${in.header.coverage}&amp;limit=${in.header.limiting}</simple>
+			</recipientList>
 		</route>
 	</camelContext>
 
-	<bean id="jsonOutCreator" class="com.dashboard.route.processors.BasicProcessor"/>
-
+	<bean id="jsonOutCreator" class="com.dashboard.route.processors.BasicProcessor" />
+	<bean id="issuesAggregationStrategy" class="com.mdb.aggregators.IssueMetricsAggregationStrategy"/>
 </beans>
 <!-- END SNIPPET: e1 -->
