@@ -73,10 +73,15 @@
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-jetty</artifactId>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.13</version>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<testSourceDirectory>src/test/scala</testSourceDirectory>
+    <build>
+    <testSourceDirectory>src/test/scala</testSourceDirectory>
 		<plugins>
 			<!-- Maven Tomcat Plugin -->
 			<plugin>

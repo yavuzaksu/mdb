@@ -15,11 +15,11 @@ public class CamelStandaloneMain {
 		Main main = new Main();
 		main.enableHangupSupport();
 
-		new ClassPathXmlApplicationContext("camel-config.xml");
+        new ClassPathXmlApplicationContext("camel-sonar.xml");
 
-		System.out.println("Starting Camel... Use ctrl + c to terminate the JVM. Or press the STOP button in eclipse. \nStarted.");
-		
-		main.run();
+        System.out.println("Starting Camel... Use ctrl + c to terminate the JVM. Or press the STOP button in eclipse. \nStarted.");
+
+        main.run();
 		
 	}
 
