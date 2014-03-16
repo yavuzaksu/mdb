@@ -6,40 +6,40 @@
     <display-name>Metrics Dashboard</display-name>
 
     <context-param>
-    <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:camel-sonar.xml</param-value>
-  </context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:camel-sonar-routes.xml</param-value>
+    </context-param>
 
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
-  <servlet>
-    <servlet-name>CamelServlet</servlet-name>
-    <servlet-class>org.apache.camel.component.servlet.CamelHttpTransportServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  
-  <servlet>
-		<servlet-name>jersey-helloworld-serlvet</servlet-name>
-		<servlet-class>
-                     com.sun.jersey.spi.container.servlet.ServletContainer
-                </servlet-class>
-		<init-param>
-		     <param-name>com.sun.jersey.config.property.packages</param-name>
-		     <param-value>com.monitise.mdb.rest</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+    <servlet>
+        <servlet-name>CamelServlet</servlet-name>
+        <servlet-class>org.apache.camel.component.servlet.CamelHttpTransportServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
-	<servlet-mapping>
-		<servlet-name>jersey-helloworld-serlvet</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
-	</servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>CamelServlet</servlet-name>
-    <url-pattern>/camel/*</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>jersey-helloworld-serlvet</servlet-name>
+        <servlet-class>
+            com.sun.jersey.spi.container.servlet.ServletContainer
+        </servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>com.monitise.mdb.rest</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jersey-helloworld-serlvet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CamelServlet</servlet-name>
+        <url-pattern>/camel/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>
-  <!-- END SNIPPET: e1 -->
+        <!-- END SNIPPET: e1 -->
