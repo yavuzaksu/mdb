@@ -249,47 +249,41 @@
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-
-
-            <!-- camel -->
             <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-core</artifactId>
                 <version>${camel.version}</version>
-
             </dependency>
             <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-spring</artifactId>
                 <version>${camel.version}</version>
-
             </dependency>
             <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-servlet</artifactId>
                 <version>${camel.version}</version>
-
             </dependency>
             <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-jetty</artifactId>
                 <version>${camel.version}</version>
-                <!-- use the same version as your Camel core version -->
             </dependency>
-
             <dependency>
-                <groupId>com.monitise</groupId>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-scala</artifactId>
+                <version>${camel.version}</version>
+            </dependency>
+            <dependency>
+            <groupId>com.monitise</groupId>
                 <artifactId>mdb</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
-
             <dependency>
                 <groupId>com.sun.jersey</groupId>
                 <artifactId>jersey-server</artifactId>
                 <version>1.9</version>
             </dependency>
-
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
@@ -306,8 +300,6 @@
                 <version>2.0.M4</version>
                 <scope>test</scope>
             </dependency>
-
-
         </dependencies>
     </dependencyManagement>
 
