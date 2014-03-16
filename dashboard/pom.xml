@@ -30,8 +30,8 @@
 	<properties>
 		<spring.version>4.0.2.RELEASE</spring.version>
 		<junit.version>4.11</junit.version>
-		<jdk.version>1.6</jdk.version>
-		<camel.version>2.12.3</camel.version>
+        <jdk.version>1.7</jdk.version>
+        <camel.version>2.12.3</camel.version>
 	</properties>
 
 	<dependencies>
@@ -40,7 +40,6 @@
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
 		</dependency>
-		<!-- camel -->
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-core</artifactId>
@@ -53,12 +52,10 @@
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-servlet</artifactId>
 		</dependency>
-		<!-- we need spring web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
@@ -68,7 +65,6 @@
 			<artifactId>scalatest_${scala.version}</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-jetty</artifactId>
@@ -76,14 +72,12 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.0.13</version>
         </dependency>
     </dependencies>
 
     <build>
     <testSourceDirectory>src/test/scala</testSourceDirectory>
 		<plugins>
-			<!-- Maven Tomcat Plugin -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>tomcat-maven-plugin</artifactId>
@@ -93,8 +87,6 @@
 					<path>/mdb</path>
 				</configuration>
 			</plugin>
-
-
 			<plugin>
 				<groupId>org.scala-tools</groupId>
 				<artifactId>maven-scala-plugin</artifactId>
@@ -260,6 +252,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-
 </project>
