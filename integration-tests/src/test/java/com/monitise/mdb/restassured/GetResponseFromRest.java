@@ -6,7 +6,6 @@ import com.jayway.restassured.path.json.JsonPath;
 import com.jayway.restassured.response.Response;
 import com.monitise.mdb.restconfig.ConfigurationManager;
 
-
 public class GetResponseFromRest {
 	public static JsonPath getJsonPathFromRestApi(String limit) {
 		JsonPath pathFromRest = given()
@@ -14,22 +13,22 @@ public class GetResponseFromRest {
 				.when()
 
 				.get(ConfigurationManager.getRestUrl()
-						+ "/mdb/api/project/worse/" + limit).then()
+						+ "/mdb/project/coverage/worse" + limit).then()
 
 				.extract().body().jsonPath();
 
 		return pathFromRest;
 	}
 
-	public static void getIssues(String severity) {
+	public static JsonPath getIssues() {
 
-		Response response = given()
+		JsonPath issues = given()
 				.header("Authorization", "Basic YWRtaW46YWRtaW4=")
+				.contentType("JSON")
 				.when()
-				.get(ConfigurationManager.getSonarUrl()
-						+ "/mdb/api/project/issues/"
-						+ severity.toLowerCase()).then().extract().response();
-		response.body().prettyPrint();
-
+				.get(ConfigurationManager.getRestUrl()
+						+ "/mdb/project/sonar/issues/aggregated").then().extract()
+				.body().jsonPath();
+		return issues;
 	}
 }

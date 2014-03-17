@@ -27,6 +27,7 @@
                 <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=MAJOR&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
                 <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=MINOR&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
                 <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=BLOCKER&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
+                <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=CRITICAL&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
             </multicast>
             <process ref="processAggregatePrinter" />
         </route>

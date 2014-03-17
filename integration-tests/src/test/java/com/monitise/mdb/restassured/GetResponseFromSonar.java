@@ -26,16 +26,18 @@ public class GetResponseFromSonar {
 		return pathFromSonar;
 	}
 
-	public static void getIssues(String severity) {
+	public static JsonPath getIssues(String severity) {
 
-		Response response = given()
+		JsonPath path = given()
 				.header("Authorization", "Basic YWRtaW46YWRtaW4=")
 				.when()
 				.get(ConfigurationManager.getSonarUrl()
-						+ "/api/issues/search?severity=" + severity).then()
-				.extract().response();
-		response.body().prettyPrint();
-
+						+ "/api/issues/search?statuses=OPEN&severities="+severity).then()
+				.extract().body().jsonPath();
+		
+		return path;
 	}
+	
+	
 
 }

@@ -20,7 +20,7 @@ import com.monitise.mdb.restconfig.ConfigurationManager;
 public class GetAvgUsingJsonObject {
 	// CHECKSTYLE:OFF
 	@Test
-	public void getProjects()  {
+	public void getProjects() {
 		/*
 		 * Get response of metrics for all projects as a string
 		 */
