@@ -1,74 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>gridster test</title>
-    <meta name="author" content="gyurisc">
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.gridster.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="real.css">
-    <link rel="stylesheet" type="text/css" href="http://www.jchartfx.com/libs/v7/current/styles/jchartfx.css"/>
+	<head>
+		<title>gridster test</title>
 
 
-    <script type="text/javascript" src="http://www.jchartfx.com/libs/v7/current/js/jchartfx.system.js"></script>
-    <script type="text/javascript" src="http://www.jchartfx.com/libs/v7/current/js/jchartfx.coreVector.js"></script>
-    <script type="text/javascript" src="http://www.jchartfx.com/libs/v7/current/js/jchartfx.advanced.js"></script>
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/pie.js"></script>
+        <link rel="stylesheet" type="text/css" href="assets/css/jquery.gridster.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="http://www.jchartfx.com/libs/v7/current/styles/jchartfx.css"/>
+        <script type="text/javascript" src="http://www.jchartfx.com/libs/v7/current/js/jchartfx.system.js"></script>
+        <script type="text/javascript" src="http://www.jchartfx.com/libs/v7/current/js/jchartfx.coreVector.js"></script>
+        <script type="text/javascript" src="http://www.jchartfx.com/libs/v7/current/js/jchartfx.advanced.js"></script>
+   
+	</head>
+	<body>
+     <div style="width: 1240px;" class="gridster ready">
+          <ul style="height: 740px; position: relative;">
+					<li data-row="1" data-col="2" style="background-color: rgb(0, 106,193)" data-sizex="2" data-sizey="2"></li>
+                    <li data-row="2" data-col="4"  style="background-color: rgb(140, 191, 38a)"data-sizex="2" data-sizey="2"></li>
+					<li data-row="1"  data-col="1" style="background-color: rgb(0, 193, 63)" data-sizex="1" data-sizey="3">eee</li>
+					<li data-row="4" data-col="6" data-sizex="1" style="background-color: rgb(254, 124, 34)" data-sizey="2">
+                        <div id="ChartDiv1" style="width:500px;height:375px;display:inline-block"></div></li>
+					<li data-row="3" data-col="2"  style="background-color:rgb(114,0,172)"  data-sizex="2" data-sizey="1">ss</li>
+                    <li data-row="2" data-col="1" style="background-color:rgb(255,46,18)" data-sizex="2" data-sizey="1">browsn</li>
+                    <li data-row="1" data-col="4" data-sizex="1"  style="background-color:rgb(218,83,44)"  data-sizey="1">fsdfsfsfsfsfsfsd</li>
+                    <li data-row="4" data-col="1"  style="background-color:rgb(255,196,13)"  data-sizex="6" data-sizey="1">ss</li>
+   	       </ul>
+					
+		</div>
+		<script type="text/javascript" src="assets/js/jquery.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.gridster.js" charster="utf-8"></script>
+		<script type="text/javascript">
+			var gridster;
 
-    <script type="text/javascript" src="sample.js"></script>
-    <script type="text/javascript" src="sample3.js"></script>
-    <script>
-
-    </script>
-</head>
-<body>
-<div style="width: 1240px;" class="gridster ready">
-    <ul style="height: 740px; position: relative;">
-
-
-        <font color="red" size="6px">67</font></center></h1></li>
-        <li data-row="1" data-col="2" style="background-color: rgb(0, 106,193)" data-sizex="2" data-sizey="2">
-            <h1><font color:white>dfdf</font>
-
-                <h1>
-        </li>
-        <li data-row="2" data-col="4" style="background-color: rgb(140, 191, 38"
-        ) data-sizex="2" data-sizey="2">
-        <h1>
-
-            <h1></li>
-
-                <li data-row="1" data-col="1" style="background-color: rgb(0, 193, 63)" data-sizex="1" data-sizey="3">
-                    eee
-                </li>
-                <li data-row="4" data-col="6" data-sizex="1" style="background-color: rgb(254, 124, 34)"
-                    data-sizey="2"></li>
-
-                <li data-row="3" data-col="2" style="background-color:rgb(114,0,172)" data-sizex="2" data-sizey="1">ss
-                </li>
-                <li data-row="2" data-col="1" style="background-color:rgb(255,46,18)" data-sizex="2" data-sizey="1">
-                    browsn
-                </li>
-                <li data-row="1" data-col="4" data-sizex="1" style="background-color:rgb(218,83,44)" data-sizey="1">
-                    fsdfsfsfsfsfsfsd
-                </li>
-                <li data-row="4" data-col="1" style="background-color:rgb(255,196,13)" data-sizex="6" data-sizey="1">
-                    ss
-                </li>
-
-</div>
-
-</div>
-<script type="text/javascript" src="assets/js/jquery.js"></script>
-<script type="text/javascript" src="assets/js/jquery.gridster.js" charster="utf-8"></script>
-<script type="text/javascript">
-    var gridster;
-
-    $(function () {
-        gridtster = $(".gridster > ul").gridster({
-            widget_margins: [3, 3],
-            widget_base_dimensions: [203, 203],
-            min_cols: 8
-        }).data('gridster');
-    });
-</script>
-</body>
+			$(function() {
+				gridtster = $(".gridster > ul").gridster({
+					widget_margins: [3, 3], 
+					widget_base_dimensions: [203, 203],
+					min_cols: 8
+				}).data('gridster');
+			});
+		</script>
+	</body>
 </html>

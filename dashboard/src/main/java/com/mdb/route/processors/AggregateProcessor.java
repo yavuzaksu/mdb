@@ -7,9 +7,7 @@ public class AggregateProcessor implements Processor {
 	
 	@Override
     public void process(Exchange exchange) throws Exception {
-		
     	String string = exchange.getIn().getBody(String.class);
-    	
     	exchange.getOut().setBody(string);
     }
 }
