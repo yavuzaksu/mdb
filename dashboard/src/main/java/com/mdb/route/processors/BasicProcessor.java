@@ -1,4 +1,4 @@
-package com.dashboard.route.processors;
+package com.mdb.route.processors;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;

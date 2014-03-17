@@ -11,33 +11,35 @@
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <propertyPlaceholder id="properties" location="classpath:application.properties"/>
         <route>
-            <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/coverage/worse"/>
+            <from uri="restlet:http://{{host}}:{{port}}/{{context}}/project/coverage/worse"/>
             <process ref="jsonOutCreator"/>
             <to uri="http://{{sonar.host}}:{{sonar.port}}/api/resources?metrics=coverage&amp;limit=10"/>
         </route>
         <route>
-            <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/coverage/avg"/>
+            <from uri="restlet:http://{{host}}:{{port}}/{{context}}/project/coverage/avg"/>
             <process ref="jsonOutCreator"/>
             <to uri="http://{{sonar.host}}:{{sonar.port}}/api/resources?metrics=coverage&amp;limit=1&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
         </route>
 
         <route>
-            <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/aggregated"/>
+            <from uri="restlet:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/aggregated"/>
             <multicast strategyRef="issuesAggregationStrategy" parallelProcessing="true">
                 <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=MAJOR&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
                 <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=MINOR&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
                 <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=BLOCKER&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
             </multicast>
+            <process ref="processAggregatePrinter" />
         </route>
         <route>
-            <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/all"/>
+            <from uri="restlet:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/all"/>
             <process ref="jsonOutCreator"/>
             <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=BLOCKER,CRITICAL,MAJOR,MINOR,INFO"/>
         </route>
         <route>
-            <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/{issueType}"/>
+            <from uri="restlet:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/{issueType}"/>
             <process ref="jsonOutCreator"/>
             <to uri="http://{{sonar.host}}:{{sonar.port}}/issues/search?statuses=OPEN&amp;severities=${issueType}"/>
-        </route>
+        </route>  
+		
     </camelContext>
 </beans>
