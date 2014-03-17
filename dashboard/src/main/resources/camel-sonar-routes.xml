@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <import resource="classpath:camel-sonar-beans.xml"/>
+
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+        <propertyPlaceholder id="properties" location="classpath:application.properties"/>
+        <route>
+            <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/coverage/worse"/>
+            <process ref="jsonOutCreator"/>
+            <to uri="http://{{sonar.host}}:{{sonar.port}}/api/resources?metrics=coverage&amp;limit=10"/>
+        </route>
+        <route>
+            <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/coverage/avg"/>
+            <process ref="jsonOutCreator"/>
+            <to uri="http://{{sonar.host}}:{{sonar.port}}/api/resources?metrics=coverage&amp;limit=1&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
+        </route>
+        <route>
+            <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/aggregated"/>
+            <multicast strategyRef="issuesAggregationStrategy" parallelProcessing="true">
+                <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=MAJOR&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
+                <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=MINOR&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
+                <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=BLOCKER&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
+            </multicast>
+        </route>
+        <route>
+            <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/all"/>
+            <process ref="jsonOutCreator"/>
+            <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=BLOCKER,CRITICAL,MAJOR,MINOR,INFO"/>
+        </route>
+        <route>
+            <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/{issueType}"/>
+            <process ref="jsonOutCreator"/>
+            <to uri="http://{{sonar.host}}:{{sonar.port}}/issues/search?statuses=OPEN&amp;severities=${issueType}"/>
+        </route>
+    </camelContext>
+</beans>
