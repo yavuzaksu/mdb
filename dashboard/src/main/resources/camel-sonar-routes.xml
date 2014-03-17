@@ -20,6 +20,7 @@
             <process ref="jsonOutCreator"/>
             <to uri="http://{{sonar.host}}:{{sonar.port}}/api/resources?metrics=coverage&amp;limit=1&amp;bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
         </route>
+
         <route>
             <from uri="jetty:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/aggregated"/>
             <multicast strategyRef="issuesAggregationStrategy" parallelProcessing="true">
