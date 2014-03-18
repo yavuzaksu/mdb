@@ -245,8 +245,16 @@
 								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
-					</configuration>
+                      </configuration>
 				</plugin>
+
+                <plugin>  <groupId>org.apache.camel</groupId>
+                    <artifactId>camel-maven-plugin</artifactId>
+                    <configuration>
+                        <applicationContextUri>camel-*.xml </applicationContextUri>
+                    </configuration>
+                </plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>
