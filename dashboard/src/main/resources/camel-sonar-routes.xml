@@ -13,7 +13,7 @@
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <propertyPlaceholder id="properties" location="classpath:application.properties"/>
         <route>
-            <from uri="restlet:http://{{host}}:{{port}}/{{context}}/project/coverage/worse"/>
+            <from uri="restlet:/project/coverage/worse?restletMethods=GET"/>
             <process ref="jsonOutCreator"/>
             <to uri="http://{{sonar.host}}:{{sonar.port}}/api/resources?metrics=coverage&amp;limit=10"/>
         </route>
@@ -34,7 +34,7 @@
             <process ref="processAggregatePrinter" />
         </route>
         <route>
-            <from uri="restlet:http://{{host}}:{{port}}/{{context}}/project/sonar/issues/all"/>
+            <from uri="restlet:/project/sonar/issues/all"/>
             <process ref="jsonOutCreator"/>
             <to uri="http://{{sonar.host}}:{{sonar.port}}/api/issues/search?statuses=OPEN&amp;severities=BLOCKER,CRITICAL,MAJOR,MINOR,INFO"/>
         </route>
@@ -44,7 +44,7 @@
             <to uri="http://{{sonar.host}}:{{sonar.port}}/issues/search?statuses=OPEN&amp;severities=${issueType}"/>
         </route>  
         
-        <!-- MONGODB, exposed services -->
+        <!-- MONGODB, exposed services
         <route id="mongoIssues">
 			<from uri="restlet:/sonar/issues/?restletMethods=GET,POST" />
 			<process ref="jsonOutCreator" />
@@ -53,7 +53,8 @@
 			</setBody>
 			<to
 				uri="mongodb:myDb?database=sonar&amp;collection=issues&amp;operation=findAll" />
-		</route>
+		</route>-->
+
 		
     </camelContext>
 </beans>

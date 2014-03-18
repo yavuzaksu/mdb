@@ -1,9 +1,8 @@
 $(document).ready(function() {
     $.ajax({
-        url: "http://localhost:8085/mdb/project/coverage/worse"
+        url: "http://localhost:8080/mdb/rs/project/coverage/worse"
     }).then(function(data) {
 
-        var chart1;
             $("div", "WorsePieDiv").chart({
                 gallery: cfx.Gallery.Bar,
                 view3D: {
