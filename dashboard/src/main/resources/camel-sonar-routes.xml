@@ -44,7 +44,7 @@
             <to uri="http://{{sonar.host}}:{{sonar.port}}/issues/search?statuses=OPEN&amp;severities=${issueType}"/>
         </route>  
         
-        <!-- MONGODB, exposed services -->
+        <!-- MONGODB, exposed services 
         <route id="mongoIssues">
 			<from uri="restlet:/sonar/issues/?restletMethods=GET,POST" />
 			<process ref="jsonOutCreator" />
@@ -53,7 +53,7 @@
 			</setBody>
 			<to
 				uri="mongodb:myDb?database=sonar&amp;collection=issues&amp;operation=findAll" />
-		</route>
+		</route>-->
 		
     </camelContext>
 </beans>
