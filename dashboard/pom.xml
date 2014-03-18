@@ -18,8 +18,8 @@
 	<properties>
 		<spring.version>4.0.2.RELEASE</spring.version>
 		<junit.version>4.11</junit.version>
-        <jdk.version>1.7</jdk.version>
-        <camel.version>2.12.3</camel.version>
+		<jdk.version>1.7</jdk.version>
+		<camel.version>2.12.3</camel.version>
 	</properties>
 
 	<dependencies>
@@ -69,25 +69,25 @@
 			<artifactId>camel-jetty</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>org.restlet.jee</groupId>
-				<artifactId>org.restlet.ext.spring</artifactId>
+			<groupId>org.restlet.jee</groupId>
+			<artifactId>org.restlet.ext.spring</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>org.restlet.jee</groupId>
-				<artifactId>org.restlet.ext.servlet</artifactId>
+			<groupId>org.restlet.jee</groupId>
+			<artifactId>org.restlet.ext.servlet</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.monitise</groupId>
-            <artifactId>mdb-metrics-crawler</artifactId>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.monitise</groupId>
+			<artifactId>mdb-metrics-crawler</artifactId>
+		</dependency>
+	</dependencies>
 
-    <build>
-    <testSourceDirectory>src/test/scala</testSourceDirectory>
+	<build>
+		<testSourceDirectory>src/test/scala</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -259,6 +259,17 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+
+
+				<plugin>
+					<groupId>org.apache.camel</groupId>
+					<artifactId>camel-maven-plugin</artifactId>
+					<configuration>
+						<applicationContextUri>camel-*.xml </applicationContextUri>
+					</configuration>
+				</plugin>
+
+
 			</plugins>
 		</pluginManagement>
 	</build>
