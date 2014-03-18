@@ -11,7 +11,7 @@ public class GetResponseFromRest {
 				.when()
 
 				.get(ConfigurationManager.getRestUrl()
-						+ "/mdb/project/coverage/worse" + limit).then()
+						+ "/mdb/rs/project/coverage/worse" + limit).then()
 
 				.extract().body().jsonPath();
 		return pathFromRest;
@@ -25,7 +25,7 @@ public class GetResponseFromRest {
 				.when()
 
 				.get(ConfigurationManager.getRestUrl()
-						+ "/mdb/project/coverage/worse").then()
+						+ "/mdb/rs/project/coverage/worse").then()
 
 				.extract().body().jsonPath();
 System.out.println(pathFromRest.prettyPrint());
@@ -41,7 +41,7 @@ System.out.println(pathFromRest.prettyPrint());
 				.contentType("JSON")
 				.when()
 				.get(ConfigurationManager.getRestUrl()
-						+ "/mdb/project/sonar/issues/aggregated").then().extract()
+						+ "/mdb/rs/project/sonar/issues/aggregated").then().extract()
 				.body().jsonPath();
 		return issues;
 	}
