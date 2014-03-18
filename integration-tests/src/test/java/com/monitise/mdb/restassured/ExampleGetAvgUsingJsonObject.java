@@ -17,7 +17,7 @@ import com.monitise.mdb.restconfig.ConfigurationManager;
  *         json object and json array.
  */
 
-public class GetAvgUsingJsonObject {
+public class ExampleGetAvgUsingJsonObject {
 	// CHECKSTYLE:OFF
 	@Test
 	public void getProjects() {

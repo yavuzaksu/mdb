@@ -29,7 +29,6 @@
 		<dependency>
 			<groupId>com.jayway.restassured</groupId>
 			<artifactId>json-path</artifactId>
-
 		</dependency>
 		<dependency>
 			<groupId>com.jayway.restassured</groupId>
