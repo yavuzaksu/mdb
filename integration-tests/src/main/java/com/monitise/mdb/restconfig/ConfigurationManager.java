@@ -19,7 +19,7 @@ public final class ConfigurationManager {
     static {
         try {
             properties.load(ConfigurationManager.class.getClassLoader()
-                    .getResourceAsStream("configProperties.properties"));
+                    .getResourceAsStream("config.properties"));
         } catch (IOException io) {
             throw new RuntimeException("loading failed", io);
         }
