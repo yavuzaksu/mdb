@@ -16,6 +16,7 @@
             <from uri="restlet:http://{{host}}:{{port}}/{{context}}/project/coverage/worse"/>
             <process ref="jsonOutCreator"/>
             <to uri="http://{{sonar.host}}:{{sonar.port}}/api/resources?metrics=coverage&amp;limit=10"/>
+            <process ref="resourceJsonTransformer" />
         </route>
         <route>
             <from uri="restlet:http://{{host}}:{{port}}/{{context}}/project/coverage/avg"/>
