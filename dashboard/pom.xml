@@ -72,6 +72,10 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.monitise</groupId>
+            <artifactId>mdb-metrics-crawler</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
