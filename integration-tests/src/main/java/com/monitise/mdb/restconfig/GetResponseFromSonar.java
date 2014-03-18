@@ -11,6 +11,9 @@ import com.jayway.restassured.path.json.JsonPath;
 public class GetResponseFromSonar {
 	// CHECKSTYLE:OFF
 	public static JsonPath getJsonPathFromSonarApi(String limit) {
+		/*
+		 * ex: http://localhost:9000/api/resources/?metrics=coverage&limit=10
+		 */
 		JsonPath pathFromSonar = given()
 				.header("Authorization", "Basic YWRtaW46YWRtaW4=")
 				.when()
@@ -25,7 +28,9 @@ public class GetResponseFromSonar {
 	}
 
 	public static JsonPath getIssues(String severity) {
-
+		/*
+		 * ex: http://localhost:9000/api/issues/search?statuses=OPEN&severities=MAJOR
+		 */
 		JsonPath path = given()
 				.header("Authorization", "Basic YWRtaW46YWRtaW4=")
 				.when()

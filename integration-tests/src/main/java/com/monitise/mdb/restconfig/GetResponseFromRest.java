@@ -18,6 +18,9 @@ public class GetResponseFromRest {
 		return pathFromRest;
 	}
 	public static JsonPath getJsonPathFromRestApi() {
+		/*
+		 * http://localhost:8085/mdb/project/coverage/worse
+		 */
 		JsonPath pathFromRest = given()
 				.header("Authorization", "Basic YWRtaW46YWRtaW4=")
 				.when()
@@ -31,7 +34,9 @@ public class GetResponseFromRest {
 	}
 
 	public static JsonPath getIssues() {
-
+/*
+ * http://localhost:8085/mdb/project/sonar/issues/aggregated.
+ */
 		JsonPath issues = given()
 				.header("Authorization", "Basic YWRtaW46YWRtaW4=")
 				.contentType("JSON")

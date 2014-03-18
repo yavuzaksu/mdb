@@ -107,7 +107,7 @@ public class CompareResultsFromApis {
 	  
 	  }
 	 
-	@Test(priority = 1)
+	@Test(priority = 4)
 	public void aggregateNumberOfIssues() {
 		List<Issue> expectedIssues = new ArrayList<Issue>();
 		for (Severity severity : Severity.values()) {
