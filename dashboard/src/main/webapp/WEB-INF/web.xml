@@ -40,6 +40,22 @@
         <servlet-name>CamelServlet</servlet-name>
         <url-pattern>/camel/*</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RestletServlet</servlet-name>
+        <servlet-class>org.restlet.ext.spring.SpringServerServlet</servlet-class>
+        <init-param>
+            <param-name>org.restlet.component</param-name>
+            <param-value>RestletComponent</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RestletServlet</servlet-name>
+        <url-pattern>/rs/*</url-pattern>
+    </servlet-mapping>
+    
+    
 
 </web-app>
         <!-- END SNIPPET: e1 -->
