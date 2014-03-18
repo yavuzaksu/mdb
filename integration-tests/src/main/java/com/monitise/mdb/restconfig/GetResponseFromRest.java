@@ -14,7 +14,6 @@ public class GetResponseFromRest {
 						+ "/mdb/project/coverage/worse" + limit).then()
 
 				.extract().body().jsonPath();
-
 		return pathFromRest;
 	}
 	public static JsonPath getJsonPathFromRestApi() {
@@ -29,7 +28,7 @@ public class GetResponseFromRest {
 						+ "/mdb/project/coverage/worse").then()
 
 				.extract().body().jsonPath();
-
+System.out.println(pathFromRest.prettyPrint());
 		return pathFromRest;
 	}
 

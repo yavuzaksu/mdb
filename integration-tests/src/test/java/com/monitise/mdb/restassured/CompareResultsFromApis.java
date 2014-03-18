@@ -117,8 +117,7 @@ public class CompareResultsFromApis {
 			expectedIssues.add(new Issue(numberOfIssuesFromSonar, severity));
 		}
 		JsonPath issuesFromRest = GetResponseFromRest.getIssues();
-		Type actualIssuesType = new TypeToken<List<Issue>>() {
-		}.getType();
+		Type actualIssuesType = new TypeToken<List<Issue>>() {}.getType();
 		Gson gson = new Gson();
 		List<Issue> actualIssues = gson.fromJson(
 				issuesFromRest.get("mdbProjects").toString(), actualIssuesType);
