@@ -7,9 +7,8 @@ import com.monitise.mdb.ui.BaseClass;
 public class LaunchChrome extends BaseClass{
 	@Test
 	public void launchChrome() throws InterruptedException{
-		getDriver().get("http://www.wahanda.com");
+		getDriver().get("http://localhost:8080/mdb/static.html");
 		Thread.sleep(3000);
-		System.out.println( System.getProperty("os.name"));
 	}
 
 }
