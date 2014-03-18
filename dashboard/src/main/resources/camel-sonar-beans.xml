@@ -7,6 +7,7 @@
     <bean id="jsonOutCreator" class="com.mdb.route.processors.BasicProcessor"/>
     <bean id="issuesAggregationStrategy" class="com.mdb.aggregators.IssueMetricsAggregationStrategy"/>
     <bean id="processAggregatePrinter" class="com.mdb.route.processors.AggregateProcessor" />
+    <bean id="resourceJsonTransformer" class="com.mdb.route.processors.ResourcesJsonTransformer" />
     
     <bean id="RestletComponent" class="org.restlet.Component"/>
     <bean id="RestletComponentService" class="org.apache.camel.component.restlet.RestletComponent">

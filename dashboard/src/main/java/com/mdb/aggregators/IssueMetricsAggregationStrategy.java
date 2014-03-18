@@ -1,19 +1,16 @@
 package com.mdb.aggregators;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.processor.aggregate.AggregationStrategy;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import com.jayway.jsonpath.JsonPath;
-import com.mdb.issues.domain.IssueMetric;
+import com.mdb.camel.json.utils.MdbJsonUtils;
 import com.mdb.issues.domain.IssueMetricsList;
+import com.mdb.issues.domain.MdbMetric;
 
 public class IssueMetricsAggregationStrategy implements AggregationStrategy {
 	 
@@ -28,7 +25,7 @@ public class IssueMetricsAggregationStrategy implements AggregationStrategy {
         
         Message newIn = newExchange.getIn();
         String newBody = newIn.getBody(String.class);
-        IssueMetric project2Node = getIsuueMetricsAsMdbPojo(newBody); 
+        MdbMetric project2Node = getIsuueMetricsAsMdbPojo(newBody); 
         
         String finalIssueMetricsJson = createIssueMetricsArrayJson(project1Json, project2Node);
         
@@ -41,7 +38,7 @@ public class IssueMetricsAggregationStrategy implements AggregationStrategy {
 
     }
 
-	private IssueMetric getIsuueMetricsAsMdbPojo(String newBody) {
+	private MdbMetric getIsuueMetricsAsMdbPojo(String newBody) {
 		List<Object> issueList = JsonPath.read(newBody, "$.issues");
 				
 		if(JsonPath.read(newBody, "$.paging") == null 
@@ -55,15 +52,15 @@ public class IssueMetricsAggregationStrategy implements AggregationStrategy {
 		int total = JsonPath.read(newBody, "$.paging.total");
         String projectName = JsonPath.read(newBody, "$.issues[0].severity");
         
-        IssueMetric project = new IssueMetric();
+        MdbMetric project = new MdbMetric();
 		project.setSeverity(projectName);
 		project.setTotal(total);
 		
 		return project;
 	}
 
-	private String createIssueMetricsArrayJson(String oldAggregatedJson, IssueMetric newProjectNode) {
-		List<IssueMetric> projectList = JsonPath.read(oldAggregatedJson, "$.mdbProjects");
+	private String createIssueMetricsArrayJson(String oldAggregatedJson, MdbMetric newProjectNode) {
+		List<MdbMetric> projectList = JsonPath.read(oldAggregatedJson, "$.mdbProjects");
 		
 		if(newProjectNode != null){
 	        projectList.add(newProjectNode);
@@ -72,8 +69,8 @@ public class IssueMetricsAggregationStrategy implements AggregationStrategy {
         IssueMetricsList issueListObject = new IssueMetricsList();
         issueListObject.setMdbProjects(projectList);
         
-        String resultMdbIssueMetrics = toJson(issueListObject);
-		
+        String resultMdbIssueMetrics = MdbJsonUtils.toJson(issueListObject);
+        
 		return resultMdbIssueMetrics;
 	}
 
@@ -92,9 +89,9 @@ public class IssueMetricsAggregationStrategy implements AggregationStrategy {
 
 	private String createSingleElementArrayJson(String issuesJson) {
 
-        IssueMetric projectNode = getIsuueMetricsAsMdbPojo(issuesJson);
+        MdbMetric projectNode = getIsuueMetricsAsMdbPojo(issuesJson);
 
-		List<IssueMetric> projectList = new ArrayList<>();
+		List<MdbMetric> projectList = new ArrayList<>();
 		
 		if(projectNode != null){
 	        projectList.add(projectNode);
@@ -103,28 +100,9 @@ public class IssueMetricsAggregationStrategy implements AggregationStrategy {
         IssueMetricsList issueListObject = new IssueMetricsList();
         issueListObject.setMdbProjects(projectList);
 	
-        String resultMdbIssueMetrics = toJson(issueListObject);
+        String resultMdbIssueMetrics = MdbJsonUtils.toJson(issueListObject);
 		return resultMdbIssueMetrics;
 	}
 
-	private String toJson(IssueMetricsList issueListObject) {
-		ObjectMapper mapper = new ObjectMapper();
-        String resultMdbIssueMetrics = "{}";
-		try {
-			resultMdbIssueMetrics = mapper.writeValueAsString(issueListObject);
-			
-		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return resultMdbIssueMetrics;
-	}
- 
 
 }

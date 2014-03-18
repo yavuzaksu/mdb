@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IssueMetricsList {
-	private List<IssueMetric> mdbProjects = new ArrayList<>();
+	private List<MdbMetric> mdbProjects = new ArrayList<>();
 
-	public List<IssueMetric> getMdbProjects() {
+	public List<MdbMetric> getMdbProjects() {
 		return mdbProjects;
 	}
 
-	public void setMdbProjects(List<IssueMetric> mdbProjects) {
+	public void setMdbProjects(List<MdbMetric> mdbProjects) {
 		this.mdbProjects = mdbProjects;
 	}
 
