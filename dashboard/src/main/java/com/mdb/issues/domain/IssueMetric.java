@@ -4,7 +4,8 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 @JsonSerialize(include= JsonSerialize.Inclusion.NON_NULL)
 public class IssueMetric{
-	private String severity;	
+
+    private String severity;
 	private Integer total;
 	
 	public String getSeverity() {

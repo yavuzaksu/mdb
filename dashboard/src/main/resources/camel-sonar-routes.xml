@@ -7,6 +7,8 @@
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
     <import resource="classpath:camel-sonar-beans.xml"/>
+    <!-- use this if you have local mongodb installed  -->
+    <!-- import resource="classpath:metrics-crawler-context.xml"/ -->
 
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <propertyPlaceholder id="properties" location="classpath:application.properties"/>
@@ -41,6 +43,17 @@
             <process ref="jsonOutCreator"/>
             <to uri="http://{{sonar.host}}:{{sonar.port}}/issues/search?statuses=OPEN&amp;severities=${issueType}"/>
         </route>  
+        
+        <!-- MONGODB, exposed services -->
+        <route id="mongoIssues">
+			<from uri="restlet:/sonar/issues/?restletMethods=GET,POST" />
+			<process ref="jsonOutCreator" />
+			<setBody>
+				<simple>{ issues.project : "${header.projectId}"}</simple>
+			</setBody>
+			<to
+				uri="mongodb:myDb?database=sonar&amp;collection=issues&amp;operation=findAll" />
+		</route>
 		
     </camelContext>
 </beans>

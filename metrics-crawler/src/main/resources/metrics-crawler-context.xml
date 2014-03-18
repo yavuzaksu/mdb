@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+	xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+
+
+		<!-- sonar integration -->
+		<route>
+			<!-- every minutes -->
+			<from uri="quartz://sonarJob?cron=0+*+*+*+*+?" />
+			<to uri="http://localhost:9000/api/issues/search?format=json" />
+			<!--log message="issues from sonar : ${body}" /-->
+			<to
+				uri="mongodb:myDb?database=sonar&amp;collection=issues&amp;operation=save" />
+		</route>
+
+
+	</camelContext>
+
+	<!-- mongodb connection -->
+	<bean id="myDb" class="com.mongodb.Mongo">
+		<constructor-arg index="0" value="localhost" />
+	</bean>
+
+</beans>
