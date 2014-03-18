@@ -20,7 +20,15 @@
 		<junit.version>4.11</junit.version>
 		<jdk.version>1.7</jdk.version>
 		<camel.version>2.12.3</camel.version>
-	</properties>
+	</properties>   <repositories>
+    <repository>
+        <id>restlet</id>
+        <url>http://maven.restlet.org/</url>
+    </repository>
+</repositories>
+
+
+
 
 	<dependencies>
 		<dependency>
@@ -71,12 +79,14 @@
 		<dependency>
 			<groupId>org.restlet.jee</groupId>
 			<artifactId>org.restlet.ext.spring</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-asm</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
-		<dependency>
-			<groupId>org.restlet.jee</groupId>
-			<artifactId>org.restlet.ext.servlet</artifactId>
-		</dependency>
-		<dependency>
+	    <dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 		</dependency>
