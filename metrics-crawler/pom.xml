@@ -8,7 +8,7 @@
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
-    <artifactId>mdb-crawler</artifactId>
+    <artifactId>mdb-metrics-crawler</artifactId>
     <packaging>jar</packaging>
 
     <modelVersion>4.0.0</modelVersion>

@@ -11,6 +11,7 @@
 
 	<modules>
 		<module>../dashboard</module>
+		<module>../metrics-crawler</module>
 	</modules>
 
 	<properties>
